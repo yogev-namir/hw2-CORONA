@@ -18,7 +18,7 @@ class Data:
             if key in districts:
                 filtered_dict.update({key: self.data.get(key)})
 
-        values_of_feature = [1 if a in districts else 0 for a in data.get("denominazione_region")]
+        values_of_feature = [1 if a in districts else 0 for a in self.data.get("denominazione_region")]
         for key in self.data.keys():
             d1_key_value = []  # above threshold
             for i in range(len(values_of_feature)):
