@@ -33,23 +33,29 @@ class Data:
         if hasattr(self.__class__, "__missing__"):
             return self.__class__.__missing__(self, key)
 
+    def __setitem__(self, key, item):
+        self.data[key] = item
 
+    def __missing__(self, key):
+        self.data[key] = None
+
+    """
     def values(self):
         return self.data.values()
-
 
     def keys(self):
         return self.data.keys()
 
-    def update(self, dict=None, **kwargs):
-        if dict is None:
+    def update(self, dictionary=None, **kwargs):
+        if dictionary is None:
             pass
-        elif isinstance(dict, UserDict):
-            self.data.update(dict.data)
-        elif isinstance(dict, type({})) or not hasattr(dict, 'items'):
-            self.data.update(dict)
+        elif isinstance(dictionary, UserDict):
+            self.data.update(dictionary.data)
+        elif isinstance(dictionary, type({})) or not hasattr(dictionary, 'items'):
+            self.data.update(dictionary)
         else:
-            for k, v in dict.items():
+            for k, v in dictionary.items():
                 self[k] = v
         if len(kwargs):
             self.data.update(kwargs)
+    """
